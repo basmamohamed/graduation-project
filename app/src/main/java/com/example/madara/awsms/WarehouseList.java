@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -40,6 +42,7 @@ public class WarehouseList extends AppCompatActivity {
         spinner = (Spinner)findViewById(R.id.warehouseList);
         warehouseList();
 
+
     }
     private void warehouseList() {
         final ProgressDialog progressDialog = new ProgressDialog(WarehouseList.this);
@@ -55,15 +58,18 @@ public class WarehouseList extends AppCompatActivity {
                     if (!mWarehouseCall.isCanceled()) {
                         if (response.body().success == "true") {
                             Toast.makeText(WarehouseList.this,"success",Toast.LENGTH_SHORT).show();
-                            String baseCost = response.body().result.get(0).priceSchema.baseCost;
-                            String dailyRate = response.body().result.get(0).priceSchema.dailyRate;
-                            String taxPercent = response.body().result.get(0).priceSchema.taxPercent;
-                            String name = response.body().result.get(0).name;
-                            String available = response.body().result.get(0).available;
+                            warehouseItem.add(new Warehouses("","","","",""));
+                            for (int i = 0 ;i<response.body().result.size();i++){
+                            String baseCost = response.body().result.get(i).priceSchema.baseCost;
+                            String dailyRate = response.body().result.get(i).priceSchema.dailyRate;
+                            String taxPercent = response.body().result.get(i).priceSchema.taxPercent;
+                            String name = response.body().result.get(i).name;
+                            String available = response.body().result.get(i).available;
                             Warehouses warehouses = new Warehouses(baseCost , dailyRate , taxPercent , name , available);
-                            warehouseItem.add(warehouses);
+                            warehouseItem.add(warehouses);}
                             WarehouseAdapter warehouseAdapter = new WarehouseAdapter(WarehouseList.this,warehouseItem);
 // Specify the layout to use when the list of choices appears
+
                             warehouseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
                             spinner.setAdapter(warehouseAdapter);

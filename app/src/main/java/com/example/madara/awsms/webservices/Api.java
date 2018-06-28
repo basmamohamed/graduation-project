@@ -36,6 +36,7 @@ public interface Api {
     @POST("Account/Register")
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
     @POST("Warehouse/List")
+    //@POST("api-test.php")  // Elsayed test Api
     Call<WarehouseResponse> warehouseList(@Body WarehouseRequest warehouseRequest);
     @POST("register")
     Call<OrdersCheckResponse> OrderCheck(@Body OrdersCheckRequest ordersCheckRequest , @Header("Authorization") String authHeader );

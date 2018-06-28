@@ -16,21 +16,23 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-       final boolean  i = Session.getInstance().isUserLoggedIn();
-        new Handler().postDelayed(new Runnable(){
+        final boolean i = Session.getInstance().isUserLoggedIn();
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void run(){
-                if(i){
-                    Intent goToHome = new Intent(SplashActivity.this,HomeActivity.class);
+            public void run() {
+                if (i) {
+                    Intent goToHome = new Intent(SplashActivity.this, HomeActivity.class);
                     startActivity(goToHome);
+                } else {
+                    Intent mainIntent = new Intent(SplashActivity.this,AuthenticationActivity.class);
+                    //Elsayed Test
+                    //Intent mainIntent = new Intent(SplashActivity.this, WarehouseList.class);
+
+                    startActivity(mainIntent);
+                    finish();
                 }
-                else
-                {
-                Intent mainIntent = new Intent(SplashActivity.this,AuthenticationActivity.class);
-                startActivity(mainIntent);
-                finish();}
             }
-        },time_out);
+        }, time_out);
     }
 
 }
