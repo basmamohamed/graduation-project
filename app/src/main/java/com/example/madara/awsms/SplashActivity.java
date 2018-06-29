@@ -26,8 +26,7 @@ public class SplashActivity extends AppCompatActivity {
                 } else {
                     Intent mainIntent = new Intent(SplashActivity.this,AuthenticationActivity.class);
                     //Elsayed Test
-                    //Intent mainIntent = new Intent(SplashActivity.this, WarehouseList.class);
-
+                    //Intent mainIntent = new Intent(SplashActivity.this, OrderActivity.class);
                     startActivity(mainIntent);
                     finish();
                 }

@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
@@ -55,7 +56,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
         OrderDateText = (TextView) findViewById(R.id.orderDateList);
         DeliverDateText = (TextView) findViewById(R.id.deliverDateList);
         spinner = (Spinner)findViewById(R.id.warehouseList);
-
+        spinner.setOnItemSelectedListener(this);
         OrderDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -84,6 +85,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
                 Deliverdate.show();
             }
         });
+        warehouseList();
     }
 
 
@@ -186,7 +188,9 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        if(position!=0){
         clickedItem = (Warehouses) adapterView.getItemAtPosition (position) ;
+        }
     }
 
     @Override

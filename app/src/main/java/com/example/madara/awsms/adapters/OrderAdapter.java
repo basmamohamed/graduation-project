@@ -49,7 +49,8 @@ public class OrderAdapter extends ArrayAdapter <OrderDetails> {
 
 
         TextView warehousesList = (TextView)listItemView.findViewById(R.id.WarehouseListSpinner);
-        warehousesList.setText((CharSequence) currentOrderDetails.getWarehouses());
+        //warehousesList.setText((CharSequence) currentOrderDetails.getWarehouses());
+        warehousesList.setText(currentOrderDetails.getWarehouses().getName().toString());
 
         return listItemView;
     }
