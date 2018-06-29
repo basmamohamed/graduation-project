@@ -50,5 +50,9 @@
             android:layout_height="wrap_content"
             tools:text="dd/mm/yy"/>
     </LinearLayout>
+    <TextView
+        android:id="@+id/WarehouseListSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

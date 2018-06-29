@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.madara.awsms.OrdersSummary;
 import com.example.madara.awsms.R;
 import com.example.madara.awsms.models.OrderDetails;
+import com.example.madara.awsms.models.Warehouses;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class OrderAdapter extends ArrayAdapter <OrderDetails> {
         }
         OrderDetails currentOrderDetails = getItem(position);
 
+
         TextView numberOfUnitsTextView = (TextView) listItemView.findViewById(R.id.numberOfUnitsList);
         numberOfUnitsTextView.setText(currentOrderDetails.getUnits());
 
@@ -45,6 +47,9 @@ public class OrderAdapter extends ArrayAdapter <OrderDetails> {
         TextView deliverDateTextView = (TextView) listItemView.findViewById(R.id.deliverDateList);
         deliverDateTextView.setText(currentOrderDetails.getDeliverDate());
 
+
+        TextView warehousesList = (TextView)listItemView.findViewById(R.id.WarehouseListSpinner);
+        warehousesList.setText((CharSequence) currentOrderDetails.getWarehouses());
 
         return listItemView;
     }

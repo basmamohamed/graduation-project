@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.madara.awsms.OrderActivity;
 import com.example.madara.awsms.R;
 import com.example.madara.awsms.WarehouseList;
 import com.example.madara.awsms.models.OrderDetails;
@@ -19,7 +20,7 @@ import com.example.madara.awsms.models.Warehouses;
 import java.util.ArrayList;
 
 public class WarehouseAdapter extends ArrayAdapter<Warehouses> {
-    public WarehouseAdapter(@NonNull WarehouseList warehouseList, ArrayList<Warehouses> warehouses) {
+    public WarehouseAdapter(@NonNull OrderActivity warehouseList, ArrayList<Warehouses> warehouses) {
         super(warehouseList, 0, warehouses);
     }
 

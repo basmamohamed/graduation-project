@@ -29,79 +29,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WarehouseList extends AppCompatActivity {
-    private Call<WarehouseResponse> mWarehouseCall;
-    private WarehouseResponse warehouseResponse = new WarehouseResponse();
-    Spinner spinner;
-    public static ArrayList<Warehouses> warehouseItem =new ArrayList<Warehouses>() ;
-    WarehouseAdapter warehouseAdapter;
-    Warehouses warehouses;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warehouse_list);
-        spinner = (Spinner)findViewById(R.id.warehouseList);
-        warehouseList();
 
 
-    }
-    private void warehouseList() {
-        final ProgressDialog progressDialog = new ProgressDialog(WarehouseList.this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-        WarehouseRequest warehouseRequest = new WarehouseRequest();
-        mWarehouseCall = WebService.getInstance().getApi().warehouseList(warehouseRequest);
-        mWarehouseCall.enqueue(new Callback<WarehouseResponse>() {
-            @Override
-            public void onResponse(Call<WarehouseResponse> call, Response<WarehouseResponse> response) {
-                try {
-                    if (!mWarehouseCall.isCanceled()) {
-                        if (response.body().success == "true") {
-                            Toast.makeText(WarehouseList.this,"success",Toast.LENGTH_SHORT).show();
-                            warehouseItem.add(new Warehouses("","","","",""));
-                            for (int i = 0 ;i<response.body().result.size();i++){
-                            String baseCost = response.body().result.get(i).priceSchema.baseCost;
-                            String dailyRate = response.body().result.get(i).priceSchema.dailyRate;
-                            String taxPercent = response.body().result.get(i).priceSchema.taxPercent;
-                            String name = response.body().result.get(i).name;
-                            String available = response.body().result.get(i).available;
-                            Warehouses warehouses = new Warehouses(baseCost , dailyRate , taxPercent , name , available);
-                            warehouseItem.add(warehouses);}
-                            WarehouseAdapter warehouseAdapter = new WarehouseAdapter(WarehouseList.this,warehouseItem);
-// Specify the layout to use when the list of choices appears
-
-                            warehouseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-                            spinner.setAdapter(warehouseAdapter);
-                            progressDialog.cancel();
-
-                        } else if (response.body().success == "false") {
-                            progressDialog.cancel();
-                            Toast.makeText(WarehouseList.this, "failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                } catch (Exception e) {
-                    progressDialog.cancel();
-                    Toast.makeText(WarehouseList.this, "failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<WarehouseResponse> call, Throwable t) {
-                if(!mWarehouseCall.isCanceled()) {
-                    progressDialog.cancel();
-                    Toast.makeText(WarehouseList.this, "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mWarehouseCall != null) {
-            mWarehouseCall.cancel();
-        }
-    }
 }

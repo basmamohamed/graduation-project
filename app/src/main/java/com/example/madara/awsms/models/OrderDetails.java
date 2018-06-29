@@ -11,11 +11,13 @@ public class OrderDetails implements Parcelable{
     private String mUnits;
     private String mOrderDate;
     private String mDeliverDate;
+    private Warehouses mWarehouses;
 
-    public OrderDetails(String units , String orderDate , String deliverDate){
+    public OrderDetails(String units , String orderDate , String deliverDate ,Warehouses warehouses){
         mUnits=units;
         mOrderDate=orderDate;
         mDeliverDate=deliverDate;
+        mWarehouses = warehouses;
     }
     public String getUnits() {
         return mUnits;
@@ -31,6 +33,8 @@ public class OrderDetails implements Parcelable{
         return mDeliverDate;
     }
     public void setDeliverDate(String deliverDate) {mDeliverDate = deliverDate;}
+    public Warehouses getWarehouses() { return mWarehouses; }
+    public void setWarehouses(Warehouses warehouses) {mWarehouses = warehouses;}
 
     @Override
     public int describeContents() {
