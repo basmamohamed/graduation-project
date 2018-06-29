@@ -5,8 +5,14 @@ package com.example.madara.awsms.webservices;
 
 
 import com.example.madara.awsms.WarehouseList;
+import com.example.madara.awsms.models.CategoriesListRequest;
+import com.example.madara.awsms.models.CategoriesListResponse;
+import com.example.madara.awsms.models.GetAccountRequest;
+import com.example.madara.awsms.models.GetAccountResponse;
 import com.example.madara.awsms.models.LoginRequest;
 import com.example.madara.awsms.models.LoginResponse;
+import com.example.madara.awsms.models.OrderConfirmRequest;
+import com.example.madara.awsms.models.OrderConfirmResponse;
 import com.example.madara.awsms.models.OrdersCheckRequest;
 import com.example.madara.awsms.models.OrdersCheckResponse;
 import com.example.madara.awsms.models.RegisterRequest;
@@ -36,11 +42,16 @@ public interface Api {
     @POST("Account/Register")
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
     @POST("Warehouse/List")
-    //@POST("api-test.php")  // Elsayed test Api
     Call<WarehouseResponse> warehouseList(@Body WarehouseRequest warehouseRequest);
-    @POST("register")
-    Call<OrdersCheckResponse> OrderCheck(@Body OrdersCheckRequest ordersCheckRequest , @Header("Authorization") String authHeader );
-//    @POST("bindcard")
+    @POST("Orders/Check")
+    Call<OrdersCheckResponse> orderCheck(@Body OrdersCheckRequest ordersCheckRequest , @Header("Authorization") String authHeader );
+    @POST("Orders/Confirm")
+    Call<OrderConfirmResponse> orderConfirm(@Body OrderConfirmRequest orderConfirmRequest , @Header("Authorization") String authHeader );
+    @POST("Account/Get")
+    Call<GetAccountResponse> getAccount(@Body GetAccountRequest getAccountRequest , @Header("Authorization") String authHeader );
+    @POST ("Categories/List")
+    Call<CategoriesListResponse> catrgoriesList(@Body CategoriesListRequest categoriesListRequest , @Header("Authorization") String authHeader );
+
 
 ////
 ////    //@POST("register-user.php")

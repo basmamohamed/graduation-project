@@ -186,7 +186,9 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-        clickedItem = (Warehouses) adapterView.getItemAtPosition (position) ;
+        if (position!=0){
+            clickedItem = (Warehouses) adapterView.getItemAtPosition(position);
+        }
     }
 
     @Override
