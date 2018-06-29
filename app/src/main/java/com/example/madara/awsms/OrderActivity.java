@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -27,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OrderActivity extends AppCompatActivity {
+public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public static ArrayList<OrderDetails> Item = new ArrayList<OrderDetails>();
     OrderDetails order;
     TextView UnitsText, OrderDateText, DeliverDateText;
@@ -36,7 +37,7 @@ public class OrderActivity extends AppCompatActivity {
     private Call<WarehouseResponse> mWarehouseCall;
     private WarehouseResponse warehouseResponse = new WarehouseResponse();
     Spinner spinner;
-    Warehouses warehouses;
+    Warehouses clickedItem;
     public static ArrayList<Warehouses> warehouseItem =new ArrayList<Warehouses>();
 
     @Override
@@ -90,7 +91,7 @@ public class OrderActivity extends AppCompatActivity {
         units = Units.getText().toString();
         orderDate = OrderDate.getText().toString();
         deliverDate = DeliverDate.getText().toString();
-        Warehouses warehouseList=warehouseList();
+        Warehouses warehouseList = clickedItem;
         order = new OrderDetails(units, orderDate, deliverDate,warehouseList);
         Item.add(order);
         Units.getText().clear();
@@ -109,7 +110,7 @@ public class OrderActivity extends AppCompatActivity {
         units = Units.getText().toString();
         orderDate = OrderDate.getText().toString();
         deliverDate = DeliverDate.getText().toString();
-        Warehouses warehouseList=warehouseList();
+        Warehouses warehouseList = clickedItem;
         order = new OrderDetails(units, orderDate, deliverDate,warehouseList);
         Item.add(order);
         Intent intent=new Intent(this,OrdersSummary.class);
@@ -121,7 +122,7 @@ public class OrderActivity extends AppCompatActivity {
         DeliverDate.getText().clear();
         startActivity(intent);
     }
-    private Warehouses warehouseList() {
+    private void warehouseList() {
         final ProgressDialog progressDialog = new ProgressDialog(OrderActivity.this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Loading...");
@@ -145,11 +146,11 @@ public class OrderActivity extends AppCompatActivity {
                                 Warehouses warehouses = new Warehouses(baseCost , dailyRate , taxPercent , name , available);
                                 warehouseItem.add(warehouses);}
                             WarehouseAdapter warehouseAdapter = new WarehouseAdapter(OrderActivity.this,warehouseItem);
-// Specify the layout to use when the list of choices appears
-
                             warehouseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
                             spinner.setAdapter(warehouseAdapter);
+
+
+
                             progressDialog.cancel();
 
                         } else if (response.body().success == "false") {
@@ -171,7 +172,6 @@ public class OrderActivity extends AppCompatActivity {
                 }
             }
         });
-        return warehouses;
 
     }
 
@@ -184,6 +184,15 @@ public class OrderActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        clickedItem = (Warehouses) adapterView.getItemAtPosition (position) ;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }
 
 
