@@ -25,9 +25,6 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(goToHome);
                 } else {
                     Intent mainIntent = new Intent(SplashActivity.this,AuthenticationActivity.class);
-                    //Elsayed Test
-                    //Intent mainIntent = new Intent(SplashActivity.this, WarehouseList.class);
-
                     startActivity(mainIntent);
                     finish();
                 }

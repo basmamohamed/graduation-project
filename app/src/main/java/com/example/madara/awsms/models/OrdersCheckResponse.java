@@ -8,7 +8,7 @@ public class OrdersCheckResponse {
     @SerializedName("success")
     public String success;
     @SerializedName("result")
-    public List<LoginResponse.Result> result;
+    public List<Result> result;
     public static class Result{
         @SerializedName("item1")
         public String item1;

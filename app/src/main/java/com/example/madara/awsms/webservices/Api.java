@@ -44,13 +44,13 @@ public interface Api {
     @POST("Warehouse/List")
     Call<WarehouseResponse> warehouseList(@Body WarehouseRequest warehouseRequest);
     @POST("Orders/Check")
-    Call<OrdersCheckResponse> orderCheck(@Body OrdersCheckRequest ordersCheckRequest , @Header("Authorization") String authHeader );
+    Call<OrdersCheckResponse> orderCheck(@Body OrdersCheckRequest ordersCheckRequest , @Header("cookie")  String authHeader);
     @POST("Orders/Confirm")
-    Call<OrderConfirmResponse> orderConfirm(@Body OrderConfirmRequest orderConfirmRequest , @Header("Authorization") String authHeader );
+    Call<OrderConfirmResponse> orderConfirm(@Body OrderConfirmRequest orderConfirmRequest , @Header("cookie") String authHeader );
     @POST("Account/Get")
-    Call<GetAccountResponse> getAccount(@Body GetAccountRequest getAccountRequest , @Header("Authorization") String authHeader );
+    Call<GetAccountResponse> getAccount(@Body GetAccountRequest getAccountRequest , @Header("cookie") String authHeader );
     @POST ("Categories/List")
-    Call<CategoriesListResponse> catrgoriesList(@Body CategoriesListRequest categoriesListRequest , @Header("Authorization") String authHeader );
+    Call<CategoriesListResponse> catrgoriesList(@Body CategoriesListRequest categoriesListRequest , @Header("cookie") String authHeader );
 
 
 ////

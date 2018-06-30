@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.HEAD;
 
 public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public static ArrayList<OrderDetails> Item = new ArrayList<OrderDetails>();
@@ -55,7 +57,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
         OrderDateText = (TextView) findViewById(R.id.orderDateList);
         DeliverDateText = (TextView) findViewById(R.id.deliverDateList);
         spinner = (Spinner)findViewById(R.id.warehouseList);
-
+        spinner.setOnItemSelectedListener(this);
         OrderDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -84,6 +86,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
                 Deliverdate.show();
             }
         });
+        warehouseList();
     }
 
 
@@ -115,7 +118,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
         Item.add(order);
         Intent intent=new Intent(this,OrdersSummary.class);
         Bundle b = new Bundle();
-        b.putParcelable("order", order);
+        b.putParcelable("order", (Parcelable) Item);
         intent.putExtras(b);
         Units.getText().clear();
         OrderDate.getText().clear();
@@ -136,14 +139,15 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
                     if (!mWarehouseCall.isCanceled()) {
                         if (response.body().success == "true") {
                             Toast.makeText(OrderActivity.this,"success",Toast.LENGTH_SHORT).show();
-                            warehouseItem.add(new Warehouses("","","","",""));
+                            warehouseItem.add(new Warehouses("","","","","",""));
                             for (int i = 0 ;i<response.body().result.size();i++){
                                 String baseCost = response.body().result.get(i).priceSchema.baseCost;
                                 String dailyRate = response.body().result.get(i).priceSchema.dailyRate;
                                 String taxPercent = response.body().result.get(i).priceSchema.taxPercent;
                                 String name = response.body().result.get(i).name;
                                 String available = response.body().result.get(i).available;
-                                Warehouses warehouses = new Warehouses(baseCost , dailyRate , taxPercent , name , available);
+                                String warehouseId = response.body().result.get(i).id;
+                                Warehouses warehouses = new Warehouses(baseCost , dailyRate , taxPercent , name ,warehouseId, available);
                                 warehouseItem.add(warehouses);}
                             WarehouseAdapter warehouseAdapter = new WarehouseAdapter(OrderActivity.this,warehouseItem);
                             warehouseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -186,11 +190,10 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-        if (position!=0){
+        if (position != 0) {
             clickedItem = (Warehouses) adapterView.getItemAtPosition(position);
         }
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 

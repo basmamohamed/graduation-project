@@ -70,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
         loginRequest.email = email;
         loginRequest.password = password;
         loginRequest.remember = "true";
-        //Session.getInstance().getUser().user_cookie
         mLoginCall = WebService.getInstance().getApi().loginUser(loginRequest);
         mLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override

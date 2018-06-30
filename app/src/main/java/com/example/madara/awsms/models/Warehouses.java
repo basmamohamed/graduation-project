@@ -6,7 +6,8 @@ public class Warehouses {
     String mTaxPercent;
     String mName;
     String mAvailable;
-    public Warehouses (String baseCost ,String dailyRate,String taxPercent , String name ,  String available){
+    String mId;
+    public Warehouses (String baseCost ,String dailyRate,String taxPercent , String name , String id , String available){
         mBaseCost = baseCost;
         mDailyRate = dailyRate;
         mTaxPercent = taxPercent;
@@ -36,4 +37,7 @@ public class Warehouses {
         return mAvailable;
     }
     public void setAvailable(String available) {mAvailable = available;}
+
+    public String getId (){return mId;}
+    public void setId (String id){mId=id;}
 }
