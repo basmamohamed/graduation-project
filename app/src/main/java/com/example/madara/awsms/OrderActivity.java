@@ -137,6 +137,7 @@ public class OrderActivity extends AppCompatActivity {
         if (mWarehouseCall != null) {
             mWarehouseCall.cancel();
         }
+
     }
 
 

@@ -12,6 +12,7 @@ import com.example.madara.awsms.models.LoginResponse;
 import com.example.madara.awsms.models.OrderConfirmResponse;
 import com.example.madara.awsms.models.OrdersCheckRequest;
 import com.example.madara.awsms.models.OrdersCheckResponse;
+import com.example.madara.awsms.models.OrdersListResponse;
 import com.example.madara.awsms.models.RegisterRequest;
 import com.example.madara.awsms.models.RegisterResponse;
 import com.example.madara.awsms.models.WarehouseRequest;
@@ -45,7 +46,9 @@ public interface Api {
     @POST("Account/Get")
     Call<GetAccountResponse> getAccount(@Body GetAccountRequest getAccountRequest , @Header("cookie") String authHeader );
     @POST ("Categories/List")
-    Call<CategoriesListResponse> catrgoriesList(@Body CategoriesListRequest categoriesListRequest , @Header("cookie") String authHeader );
+    Call<CategoriesListResponse> getCategoriesList(@Header("cookie") String authHeader);
+    @POST("Orders/List")
+    Call<OrdersListResponse> getUserOrdersList(@Header("cookie") String authHeader);
 
 
 ////

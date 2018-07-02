@@ -49,8 +49,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".WarehouseProfile"
-            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".WarehouseProfile"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".UserWarehouses"></activity>
     </application>
 
 </manifest>

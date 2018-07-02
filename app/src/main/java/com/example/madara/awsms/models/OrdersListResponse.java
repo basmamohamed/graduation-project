@@ -1,7 +1,5 @@
 package com.example.madara.awsms.models;
 
-import android.widget.LinearLayout;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
  * Created by madara on 7/2/18.
  */
 
-public class OrdersListRequest {
+public class OrdersListResponse {
     @SerializedName("success")
     public String success;
     public class Result{
@@ -21,7 +19,7 @@ public class OrdersListRequest {
         @SerializedName("placementDate")
         public String placementDate;
         @SerializedName("storageSpaces")
-        public List<OrdersListRequest.StorageSpaces> storageSpaces;
+        public List<OrdersListResponse.StorageSpaces> storageSpaces;
 
     }
     public class StorageSpaces{
@@ -32,7 +30,7 @@ public class OrdersListRequest {
         @SerializedName("endDate")
         public String endDate;
         @SerializedName("item")
-        public List<OrdersListRequest.item> items;
+        public List<OrdersListResponse.item> items;
         @SerializedName("name")
         public String name;
     }
