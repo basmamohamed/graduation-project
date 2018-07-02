@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class  OrdersCheckRequest {
-    public List<request> requests;
-    public class request{
     @SerializedName("warehouseId")
     public String warehouseId;
     @SerializedName("priceSchema")
@@ -25,7 +23,7 @@ public class  OrdersCheckRequest {
     public String startDate;
     @SerializedName("endDate")
     public String endDate;
-    }
+
 
 }
 

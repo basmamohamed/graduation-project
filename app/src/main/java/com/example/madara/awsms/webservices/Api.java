@@ -4,20 +4,16 @@ package com.example.madara.awsms.webservices;
 
 
 
-import com.example.madara.awsms.WarehouseList;
-import com.example.madara.awsms.models.CategoriesListRequest;
 import com.example.madara.awsms.models.CategoriesListResponse;
 import com.example.madara.awsms.models.GetAccountRequest;
 import com.example.madara.awsms.models.GetAccountResponse;
 import com.example.madara.awsms.models.LoginRequest;
 import com.example.madara.awsms.models.LoginResponse;
-import com.example.madara.awsms.models.OrderConfirmRequest;
 import com.example.madara.awsms.models.OrderConfirmResponse;
 import com.example.madara.awsms.models.OrdersCheckRequest;
 import com.example.madara.awsms.models.OrdersCheckResponse;
 import com.example.madara.awsms.models.RegisterRequest;
 import com.example.madara.awsms.models.RegisterResponse;
-import com.example.madara.awsms.models.User;
 import com.example.madara.awsms.models.WarehouseRequest;
 import com.example.madara.awsms.models.WarehouseResponse;
 
@@ -25,8 +21,6 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -43,10 +37,11 @@ public interface Api {
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
     @POST("Warehouse/List")
     Call<WarehouseResponse> warehouseList(@Body WarehouseRequest warehouseRequest);
-    @POST("Orders/Check")
-    Call<OrdersCheckResponse> orderCheck(@Body OrdersCheckRequest ordersCheckRequest , @Header("cookie")  String authHeader);
+    //@POST("Orders/Check")
+    @POST("api-test.php")
+    Call<OrdersCheckResponse> orderCheck(@Body List<OrdersCheckRequest> ordersCheckRequest , @Header("cookie")  String authHeader);
     @POST("Orders/Confirm")
-    Call<OrderConfirmResponse> orderConfirm(@Body OrderConfirmRequest orderConfirmRequest , @Header("cookie") String authHeader );
+    Call<OrderConfirmResponse> orderConfirm(@Header("OrderId") String order_id, @Header("cookie") String authHeader );
     @POST("Account/Get")
     Call<GetAccountResponse> getAccount(@Body GetAccountRequest getAccountRequest , @Header("cookie") String authHeader );
     @POST ("Categories/List")

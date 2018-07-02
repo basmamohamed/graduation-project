@@ -8,36 +8,36 @@ public class Warehouses {
     String mAvailable;
     String mId;
     public Warehouses (String baseCost ,String dailyRate,String taxPercent , String name , String id , String available){
-        mBaseCost = baseCost;
-        mDailyRate = dailyRate;
-        mTaxPercent = taxPercent;
-        mName = name;
-        mAvailable = available;
+        this.mBaseCost = baseCost;
+        this.mDailyRate = dailyRate;
+        this.mTaxPercent = taxPercent;
+        this.mName = name;
+        this.mAvailable = available;
+        this.mId = id;
 
     }
-    public String getBaseCost() {
+
+    public String getmBaseCost() {
         return mBaseCost;
     }
-    public void setBaseCost(String baseCost) {mBaseCost = baseCost;}
-    public String getDailyRate() {
+
+    public String getmDailyRate() {
         return mDailyRate;
     }
-    public void setDailyRate(String dailyRate) {
-        mDailyRate = dailyRate;
-    }
-    public String getTaxPercent() {
+
+    public String getmTaxPercent() {
         return mTaxPercent;
     }
-    public void setTaxPercent(String taxPercent) {mTaxPercent = taxPercent;}
-    public String getName() {
+
+    public String getmName() {
         return mName;
     }
-    public void setName(String name) {mName = name;}
-    public String getAvailable() {
+
+    public String getmAvailable() {
         return mAvailable;
     }
-    public void setAvailable(String available) {mAvailable = available;}
 
-    public String getId (){return mId;}
-    public void setId (String id){mId=id;}
+    public String getmId() {
+        return mId;
+    }
 }
