@@ -38,11 +38,11 @@ public interface Api {
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
     @POST("Warehouse/List")
     Call<WarehouseResponse> warehouseList(@Body WarehouseRequest warehouseRequest);
-    //@POST("Orders/Check")
-    @POST("api-test.php")
+    @POST("Orders/Check")
+    //@POST("api-test.php")
     Call<OrdersCheckResponse> orderCheck(@Body List<OrdersCheckRequest> ordersCheckRequest , @Header("cookie")  String authHeader);
     @POST("Orders/Confirm")
-    Call<OrderConfirmResponse> orderConfirm(@Header("OrderId") String order_id, @Header("cookie") String authHeader );
+    Call<OrderConfirmResponse> orderConfirm(@Header("cookie") String authHeader );
     @POST("Account/Get")
     Call<GetAccountResponse> getAccount(@Body GetAccountRequest getAccountRequest , @Header("cookie") String authHeader );
     @POST ("Categories/List")

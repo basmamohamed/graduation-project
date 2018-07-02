@@ -50,6 +50,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity(order_intent);
         }
         else if (id == R.id.goToMyOrder) {
+            Intent myorder = new Intent(HomeActivity.this,UserWarehouses.class);
+            startActivity(myorder);
 
         }
         else if (id == R.id.logout) {

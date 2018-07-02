@@ -128,8 +128,8 @@ public class WarehouseProfile extends AppCompatActivity {
             priceSchema.taxPercent = warehouseTaxpercent;
             order.priceSchema = priceSchema;
             ordersCheckRequest.add(order);
-            //String cookie = Session.getInstance().getUser().user_cookie;
-            String cookie = "cookie";
+            String cookie = Session.getInstance().getUser().user_cookie;
+            //String cookie = "cookie";
             mCheckCall = WebService.getInstance().getApi().orderCheck(ordersCheckRequest,cookie);
             mCheckCall.enqueue(new Callback<OrdersCheckResponse>() {
                 @Override
@@ -170,9 +170,9 @@ public class WarehouseProfile extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Confirming...");
         progressDialog.show();
-        //String cookie = Session.getInstance().getUser().user_cookie;
-        String cookie = "cookie";
-        mConfirmCall = WebService.getInstance().getApi().orderConfirm(orderId,cookie);
+        String cookie = Session.getInstance().getUser().user_cookie;
+        cookie = cookie+"; "+"OrderId="+orderId;
+        mConfirmCall = WebService.getInstance().getApi().orderConfirm(cookie);
         mConfirmCall.enqueue(new Callback<OrderConfirmResponse>() {
             @Override
             public void onResponse(Call<OrderConfirmResponse> call, Response<OrderConfirmResponse> response) {
@@ -184,13 +184,15 @@ public class WarehouseProfile extends AppCompatActivity {
                             progressDialog.cancel();
 
                         } else if (response.body().success == "false") {
+                            Log.e("TAG",response.body().success.toString());
                             progressDialog.cancel();
-                            Toast.makeText(WarehouseProfile.this, "failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WarehouseProfile.this, "failed1", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (Exception e) {
                     progressDialog.cancel();
-                    Toast.makeText(WarehouseProfile.this, "failed", Toast.LENGTH_SHORT).show();
+                    Log.e("TAG",response.body().toString());
+                    Toast.makeText(WarehouseProfile.this, "failed2", Toast.LENGTH_SHORT).show();
                 }
 
             }

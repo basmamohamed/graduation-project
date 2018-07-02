@@ -117,12 +117,12 @@ public class OrderActivity extends AppCompatActivity {
             public void onFailure(Call<WarehouseResponse> call, Throwable t) {
                 if (!mWarehouseCall.isCanceled()) {
                     progressDialog.cancel();
-                    warehouseItem.add(new Warehouses("10","10","10","warehouse test","10","10"));
-                    warehouseItem.add(new Warehouses("10","10","10","warehouse test2","10","10"));
-                    warehouseItem.add(new Warehouses("10","10","10","warehouse test3","10","10"));
-                    warehouseItem.add(new Warehouses("10","10","10","warehouse test4","10","10"));
-                    warehouseAdapter = new WarehouseAdapter(warehouseItem,OrderActivity.this);
-                    recyclerView.setAdapter(warehouseAdapter);
+//                    warehouseItem.add(new Warehouses("10","10","10","warehouse test","10","10"));
+//                    warehouseItem.add(new Warehouses("10","10","10","warehouse test2","10","10"));
+//                    warehouseItem.add(new Warehouses("10","10","10","warehouse test3","10","10"));
+//                    warehouseItem.add(new Warehouses("10","10","10","warehouse test4","10","10"));
+//                    warehouseAdapter = new WarehouseAdapter(warehouseItem,OrderActivity.this);
+//                    recyclerView.setAdapter(warehouseAdapter);
                     Toast.makeText(OrderActivity.this, "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
                     mWarehouseCall = null;
                 }

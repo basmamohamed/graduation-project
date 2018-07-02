@@ -78,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     if (!mLoginCall.isCanceled()) {
                         if (response.body().success == "true") {
-
                             user_id = response.body().message;
                             Toast.makeText(LoginActivity.this, "Welcome !", Toast.LENGTH_SHORT).show();
                             User user = new User();
@@ -110,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 if(!mLoginCall.isCanceled()) {
                     progressDialog.cancel();
+                    Log.e("TAG",t.toString());
                     Toast.makeText(LoginActivity.this, "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }

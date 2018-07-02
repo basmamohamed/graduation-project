@@ -11,6 +11,8 @@ import java.util.List;
 public class OrdersListResponse {
     @SerializedName("success")
     public String success;
+    @SerializedName("result")
+    public List<Result> result;
     public class Result{
         @SerializedName("id")
         public String id;
@@ -30,11 +32,11 @@ public class OrdersListResponse {
         @SerializedName("endDate")
         public String endDate;
         @SerializedName("item")
-        public List<OrdersListResponse.item> items;
+        public List<OrdersListResponse.Item> items;
         @SerializedName("name")
         public String name;
     }
-    public class item{
+    public class Item{
         @SerializedName("id")
         public String id;
         @SerializedName("name")
